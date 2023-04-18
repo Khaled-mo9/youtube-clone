@@ -29,7 +29,7 @@ const Navbar = () => {
   const [showSearch, setShowSearch] = useState(true);
 
   return (
-    <div className="flex justify-between items-center w-full text-white px-6 h-14 bg-[#181818]  sticky top-0 z-50">
+    <div className="flex justify-between items-center w-full text-white px-6 h-14 bg-[#181818]  sticky top-0 z-[100]">
       {showSearch && (
         <>
           {/* icon -- youtube */}
@@ -40,9 +40,12 @@ const Navbar = () => {
             >
               <GiHamburgerMenu className="text-2xl cursor-pointer" />
             </div>
-            <div className="flex items-center space-x-1">
-              <BsYoutube className="text-3xl text-red-600 cursor-pointer" />
-              <span className=" text-2xl cursor-pointer ">Youtube</span>
+            <div className="flex items-center space-x-1 relative">
+              <BsYoutube className="text-3xl text-red-600 relative top-px cursor-pointer" />
+              <span className=" text-2xl cursor-pointer  ">Youtube</span>
+              <span className="absolute text-[10px] font-bold -right-3 text-darkGrayishBlue -top-[2px]">
+                EG
+              </span>
             </div>
           </div>
           {/* search */}
@@ -85,12 +88,15 @@ const Navbar = () => {
       )}
 
       {!showSearch && (
-        <div className="flex items-center lg:hidden justify-between w-full">
+        <div className="grid grid-cols-12 items-center lg:hidden w-full">
           {/* search */}
-          <div className="w-1/12" onClick={() => setShowSearch(true)}>
+          <div
+            className="col-span-2 sm:col-span-1"
+            onClick={() => setShowSearch(true)}
+          >
             <IoIosArrowRoundBack className="text-4xl cursor-pointer" />
           </div>
-          <div className="flex w-11/12 items-center justify-center mt-1 space-x-2">
+          <div className="flex col-span-8 sm:col-span-10 items-center justify-center mt-1">
             <div className="flex w-full justify-center">
               <input
                 type="text"
@@ -106,10 +112,10 @@ const Navbar = () => {
                 />
               </div>
             </div>
-            <div className="w-1/12">
-              <div className="hover:bg-[#373737] bg-[#141414] w-fit  p-2 rounded-full">
-                <TiMicrophone className="text-2xl cursor-pointer" />
-              </div>
+          </div>
+          <div className="col-span-2 sm:col-span-1 flex justify-end">
+            <div className="hover:bg-[#373737] bg-[#141414] w-fit  p-2 rounded-full">
+              <TiMicrophone className="text-2xl cursor-pointer" />
             </div>
           </div>
         </div>

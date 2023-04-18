@@ -3,24 +3,24 @@ import React from "react";
 const Loading = ({ dir }) => {
   const items = [];
 
-  for (let i = 0; i < 8; i++) {
+  for (let i = 0; i < 9; i++) {
     items.push(
       <div
         className={
           dir
-            ? "w-72 mt-4 mx-2 cursor-pointer"
-            : "w-full mt-4 mx-2 cursor-pointer"
+            ? "col-span-12 smd:col-span-6 lg:col-span-4 mt-4 mx-2 cursor-pointer"
+            : "col-span-12 mt-4 mx-2 cursor-pointer"
         }
         key={i}
       >
         <div
           className={
             dir
-              ? "border-0 rounded-none animate-pulse flex flex-col space-y-2"
-              : "border-0 rounded-none animate-pulse flex flex-row space-x-2 space-y-2"
+              ? "w-full border-0 rounded-none animate-pulse flex flex-col space-y-2"
+              : "border-0 rounded-none animate-pulse flex flex-col md:flex-row space-x-2 space-y-2"
           }
         >
-          <div className="rounded bg-gray-500 h-44 w-72"></div>
+          <div className="rounded bg-gray-500 h-44 w-full md:w-1/4"></div>
           <div className="text-white flex space-x-2">
             <div className="rounded-full bg-gray-500 w-8 h-8 "></div>
             <div className="space-y-2">
@@ -41,8 +41,8 @@ const Loading = ({ dir }) => {
     <div
       className={
         dir
-          ? "flex flex-row flex-wrap justify-center"
-          : "flex flex-col flex-wrap justify-center"
+          ? "grid grid-cols-12 gap-2 px-4 md:px-0 md:pr-6"
+          : "grid grid-cols-12 gap-2 md:pr-6"
       }
     >
       {items}

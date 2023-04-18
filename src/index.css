@@ -64,3 +64,13 @@ code {
   background-color: #ffffff14;
   cursor: pointer;
 }
+
+
+.playlist::-webkit-scrollbar-thumb {
+  display: none;
+}
+
+.playlist::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}

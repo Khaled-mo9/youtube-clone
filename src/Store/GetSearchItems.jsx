@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { YOUTUBE_API_URL } from "../Utils/Constants";
+import { getComments } from "./GetHomeVideosSlice";
 
 const YOUTUBE_KEY_API = "AIzaSyC-obCxzofU5MpNCe4qhtKmLk7KkbpWoNg";
 
@@ -15,11 +16,27 @@ export const getSearched = createAsyncThunk(
   async (textSearch, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
-      const res = await axios.get(
-        `${YOUTUBE_API_URL}/search?maxResults=200&q=${textSearch}&key=${YOUTUBE_KEY_API}&part=snippet&type=video`
-      );
-      console.log("searched items", res.data);
-      return res.data;
+      const options = {
+        method: "GET",
+        url: "https://youtube-v31.p.rapidapi.com/search",
+        params: {
+          q: `${textSearch}`,
+          part: "snippet,id",
+          regionCode: "US",
+          maxResults: "50",
+          order: "date",
+        },
+        headers: {
+          "X-RapidAPI-Key":
+            "0f64c32ac5mshaf6a184234bfa5cp1a2428jsn5adb8d72f911",
+          "X-RapidAPI-Host": "youtube-v31.p.rapidapi.com",
+        },
+      };
+
+      const res = axios.request(options).then(function (response) {
+        return response.data;
+      });
+      return res;
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -29,12 +46,13 @@ export const getSearched = createAsyncThunk(
 const getSearchedItems = createSlice({
   name: "search",
   initialState,
-  reducers: {},
+  reducers: {
+    
+  },
   extraReducers: {
     [getSearched.pending]: (state, action) => {
       console.log(action);
       state.loading = false;
-
     },
     [getSearched.fulfilled]: (state, action) => {
       state.videos = action.payload.items;
@@ -43,7 +61,7 @@ const getSearchedItems = createSlice({
     },
     [getSearched.rejected]: (state, action) => {
       console.log(action);
-      state.loading = false
+      state.loading = false;
     },
   },
 });

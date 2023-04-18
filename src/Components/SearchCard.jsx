@@ -1,24 +1,30 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import logo from "./../channels4_profile.jpg";
 import Loading from "./Loading";
+import moment from "moment";
+import { getChannelDetails } from "../Store/GetHomeVideosSlice";
 
 const SearchCard = () => {
   const videos = useSelector((state) => state.search.videos);
   const loading = useSelector((state) => state.search.loading);
-
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const options = {
     year: "numeric",
     month: "long",
     //  day: "numeric",
   };
-  // console.log('HomeVideos', videos);
-
-  const navigate = useNavigate();
+  console.log("search", videos);
 
   const handleNavigate = (video) => {
     navigate(`/search/watch/${video.id.videoId}`, { state: video });
+  };
+
+  const handlePlaylistActions = (channelId) => {
+    dispatch(getChannelDetails(channelId));
+    navigate("/playlist");
   };
 
   const items = videos?.map((video) => {
@@ -30,8 +36,8 @@ const SearchCard = () => {
       >
         <div className="border-0 rounded-none flex flex-col smd:flex-row space-x-4 space-y-2">
           <img
-          width={320}
-          height={210}
+            width={320}
+            height={210}
             src={video.snippet.thumbnails.high.url}
             className="rounded"
             alt="logo"
@@ -45,16 +51,20 @@ const SearchCard = () => {
                 <span className="text-[#AAAAAAAA] text-xs ">15K views</span>
                 <span className="text-[#AAAAAAAA] text-sm font-bold"> . </span>
                 <span className="text-[#AAAAAAAA] text-xs">
-                  {new Date(video.snippet.publishedAt).toLocaleDateString(
-                    undefined,
-                    options
-                  )}
+                  {moment(video.snippet.publishedAt).format()}
                 </span>
               </div>
               {/* channle title and logo */}
               <div className="flex space-x-2 items-center">
-                <img src={logo} className="rounded-full w-8 h-8 " alt="logo" />
-                <span className="text-xs text-[#AAAAAAAA]">
+                <img
+                  src={video.snippet.thumbnails.high.url}
+                  className="rounded-full w-8 h-8"
+                  alt="logo"
+                />
+                <span
+                  className="text-xs text-[#AAAAAAAA] hover:text-white transition-all"
+                  onClick={() => handlePlaylistActions(video.snippet.channelId)}
+                >
                   {video.snippet.channelTitle}
                 </span>
               </div>

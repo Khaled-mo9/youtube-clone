@@ -166,11 +166,12 @@ const Sidebar = () => {
   const mainLinksItems = mainLinks.map((item) => {
     return (
       <div
-        className="text-white p-2 first:bg-[#ffffff14] cursor-pointer hover:bg-[#ffffff50] rounded flex flex-col lg:space-x-4 items-center lg:flex-row"
+        className="text-white p-2 first:bg-[#ffffff14] cursor-pointer
+         hover:bg-[#ffffff50] rounded flex flex-col xl:space-x-4 items-center xl:flex-row"
         key={item.name}
       >
         {item.icon}
-        <span className="text-sm"> {item.name}</span>
+        <span className="text-[10px] lg:text-sm">{item.name}</span>
       </div>
     );
   });
@@ -178,7 +179,7 @@ const Sidebar = () => {
   const secLinksItems = secLinks.map((item) => {
     return (
       <div
-        className="text-white hidden lg:flex cursor-pointer hover:bg-[#ffffff50] p-2 rounded  space-x-4 items-center"
+        className="text-white hidden xl:flex cursor-pointer hover:bg-[#ffffff50] p-2 rounded  space-x-4 items-center"
         key={item.name}
       >
         {item.icon}
@@ -187,17 +188,17 @@ const Sidebar = () => {
     );
   });
 
-  const subscriptionItems = subscriptionLinks.map((item) => {
-    return (
-      <div
-        className="flex space-x-4 cursor-pointer items-center hover:bg-[#ffffff50] p-2 rounded"
-        key={Math.random()}
-      >
-        <img className={styleImg} src={logo} />
-        <span className="text-sm">{item.name}</span>
-      </div>
-    );
-  });
+  // const subscriptionItems = subscriptionLinks.map((item) => {
+  //   return (
+  //     <div
+  //       className="flex space-x-4 cursor-pointer items-center hover:bg-[#ffffff50] p-2 rounded"
+  //       key={Math.random()}
+  //     >
+  //       <img className={styleImg} src={logo} />
+  //       <span className="text-sm">{item.name}</span>
+  //     </div>
+  //   );
+  // });
 
   const exploreItems = expolreLinks.map((item) => {
     return (
@@ -236,21 +237,20 @@ const Sidebar = () => {
   });
 
   return (
-    <div className="sidebar__home hidden bg-[#181818] lg:w-56 md:w-36 md:flex flex-col z-20 transition-all duration-700 sticky top-14 pt-2 h-[calc(100vh-56px)] overflow-y-scroll lg:pl-6 pr-2">
+    <div className="sidebar__home hidden bg-[#181818] text-sm  md:flex flex-col z-20 transition-all duration-700 overflow-x-hidden sticky top-14 pt-2 h-[calc(100vh-56px)] overflow-y-scroll  xl:pl-6 xl:pr-2">
       <div className="">
         <div className="">{mainLinksItems}</div>
-        <div className="text-white hidden md:flex lg:hidden p-2 first:bg-[#ffffff14] cursor-pointer hover:bg-[#ffffff50] rounded flex-col lg:space-x-4 items-center ">
+        <div className="text-white hidden md:flex xl:hidden p-2 first:bg-[#ffffff14] cursor-pointer hover:bg-[#ffffff50] rounded flex-col xl:space-x-4 items-center ">
           <MdOutlineVideoLibrary className="text-2xl" />
           <span className="text-sm">Library</span>
         </div>
 
-        <div className={`${HorizpntalLine} hidden lg:block`}></div>
+        <div className={`${HorizpntalLine} hidden xl:block`}></div>
 
         {secLinksItems}
-
-        <div className={`${HorizpntalLine} hidden lg:block`}></div>
+        <div className={`${HorizpntalLine} hidden xl:block`}></div>
       </div>
-      <div className="text-white hidden lg:block">
+      {/* <div className="text-white hidden xl:block">
         <h6>Subscriptions</h6>
         <div className="flex flex-col  space-y-2">
           {subscriptionItems}
@@ -273,25 +273,25 @@ const Sidebar = () => {
             </span>
           </div>
         </div>
-      </div>
-      <div className={`${HorizpntalLine} hidden lg:block`}></div>
-      <div className="hidden lg:block">
+      </div> */}
+      <div className={`${HorizpntalLine} hidden xl:block`}></div>
+      <div className="hidden xl:block">
         <h6 className="text-white">Explore</h6>
         {exploreItems}
       </div>
-      <div className={`${HorizpntalLine} hidden lg:block`}></div>
+      <div className={`${HorizpntalLine} hidden xl:block`}></div>
 
-      <div className={`hidden lg:block`}>
+      <div className={`hidden xl:block`}>
         <h6 className="text-white">More from YouTube</h6>
         {otherItems}
       </div>
-      <div className={`${HorizpntalLine} hidden lg:block`}></div>
-      <div className={`${HorizpntalLine} hidden lg:block`}>
+      <div className={`${HorizpntalLine} hidden xl:block`}></div>
+      <div className={`${HorizpntalLine} hidden xl:block`}>
         {settingItems}
 
-        <div className={`${HorizpntalLine} hidden lg:block`}></div>
+        <div className={`${HorizpntalLine} hidden xl:block`}></div>
 
-        <div className="hidden lg:flex flex-col text-white p-2 rounded space-y-4 text-sm">
+        <div className="hidden xl:flex flex-col text-white p-2 rounded space-y-4 text-sm">
           <span className="text-secondary">
             About Press Copyright Contact us Creators Advertise Developers
           </span>
