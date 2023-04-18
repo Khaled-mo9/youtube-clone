@@ -40,7 +40,9 @@ const Navbar = () => {
             >
               <GiHamburgerMenu className="text-2xl cursor-pointer" />
             </div>
-            <div className="flex items-center space-x-1 relative">
+            <div className="flex items-center space-x-1 relative" 
+            onClick={()=>navigate("/")}
+            >
               <BsYoutube className="text-3xl text-red-600 relative top-px cursor-pointer" />
               <span className=" text-2xl cursor-pointer  ">Youtube</span>
               <span className="absolute text-[10px] font-bold -right-3 text-darkGrayishBlue -top-[2px]">
@@ -82,7 +84,7 @@ const Navbar = () => {
             </div>
             <BsCameraVideo className="text-xl cursor-pointer hidden lg:block " />
             <BsBell className="text-xl cursor-pointer hidden lg:block " />
-            <img src={logo} className="rounded-full w-8" />
+            <span className="rounded-full w-8 font-bold h-8 bg-[#141414] flex justify-center items-center">K</span>
           </div>
         </>
       )}
